@@ -55,10 +55,8 @@ The prototype directly addresses the project objectives through the following fu
 
 ## 👤 Development & Contact
 
-| Role          | Name                                       | Institution           |
-| :------------ | :----------------------------------------- | :-------------------- |
-| **Developer** | Prakhar Srivastava                         | BML Munjal University |
-| **Email**     | `prakharkumar.srivastava.22cse@bmu.edu.in` |                       |
+| **Developer** | Prakhar Srivastava | BML Munjal University |
+| **Email** | `prakharkumar.srivastava.22cse@bmu.edu.in` | |
 
 ---
 
