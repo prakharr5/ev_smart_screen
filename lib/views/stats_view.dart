@@ -10,6 +10,11 @@ class StatsView extends StatelessWidget {
   Widget build(BuildContext context) {
     // This makes the whole view scrollable in case content overflows
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Diagnostics & Stats'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
