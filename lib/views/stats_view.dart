@@ -1,14 +1,13 @@
 // lib/views/stats_view.dart
+import 'package:fl_chart/fl_chart.dart'; // <-- Using fl_chart
+import 'package:syncfusion_flutter_gauges/gauges.dart'; // Using Syncfusion for gauges
 import 'package:flutter/material.dart';
-import 'package:fl_chart/fl_chart.dart'; // Import the new chart package
-import 'package:syncfusion_flutter_gauges/gauges.dart'; // Import the gauge package
 
 class StatsView extends StatelessWidget {
   const StatsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This makes the whole view scrollable in case content overflows
     return Scaffold(
       appBar: AppBar(
         title: const Text('Diagnostics & Stats'),
@@ -22,7 +21,7 @@ class StatsView extends StatelessWidget {
           children: [
             // --- 1. Primary Area (Gauges) ---
             _buildSectionTitle('Core Metrics (Real-Time)'),
-            _buildGaugesSection(),
+            _buildGaugesSection(), // This is now smaller
 
             const Divider(color: Colors.white24, height: 40),
 
@@ -43,7 +42,7 @@ class StatsView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _buildSectionTitle('Detailed Sensor Data'),
-                      _buildDataTablesSection(),
+                      _buildDataTablesSection(), // This is now smaller
                     ],
                   ),
                 ),
@@ -84,20 +83,18 @@ class StatsView extends StatelessWidget {
     );
   }
 
-  /// 1. The main gauges for core metrics
+  /// 1. The main gauges - NOW CLEANED UP
   Widget _buildGaugesSection() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _MetricGauge(title: 'Battery Voltage', value: 400, unit: 'V', max: 500),
-        _MetricGauge(title: 'Motor RPM', value: 3500, unit: 'RPM', max: 8000),
         _MetricGauge(title: 'Ambient Temp', value: 25, unit: '°C', max: 50),
         _MetricGauge(title: 'Cabin Temp', value: 22, unit: '°C', max: 30),
       ],
     );
   }
 
-  /// 2. The historical line charts
+  /// 2. The historical line charts (Using fl_chart)
   Widget _buildChartsSection() {
     return SizedBox(
       height: 200,
@@ -113,7 +110,7 @@ class StatsView extends StatelessWidget {
     );
   }
 
-  /// 3. The data tables for sensors
+  /// 3. The data tables for sensors - NOW CLEANED UP
   Widget _buildDataTablesSection() {
     final cellStyle = const TextStyle(color: Colors.white70, fontSize: 14);
     final headerStyle = const TextStyle(
@@ -125,43 +122,7 @@ class StatsView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Table 1: Tire Pressure
-        Text('Tire Pressure', style: headerStyle.copyWith(fontSize: 18)),
-        DataTable(
-          columns: [
-            DataColumn(label: Text('Tire', style: headerStyle)),
-            DataColumn(label: Text('Pressure (PSI)', style: headerStyle)),
-          ],
-          rows: [
-            DataRow(
-              cells: [
-                DataCell(Text('Front Left', style: cellStyle)),
-                DataCell(Text('35.2', style: cellStyle)),
-              ],
-            ),
-            DataRow(
-              cells: [
-                DataCell(Text('Front Right', style: cellStyle)),
-                DataCell(Text('35.1', style: cellStyle)),
-              ],
-            ),
-            DataRow(
-              cells: [
-                DataCell(Text('Rear Left', style: cellStyle)),
-                DataCell(Text('34.9', style: cellStyle)),
-              ],
-            ),
-            DataRow(
-              cells: [
-                DataCell(Text('Rear Right', style: cellStyle)),
-                DataCell(Text('35.0', style: cellStyle)),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-
-        // Table 2: Battery Cells
+        // Table: Battery Cells (Unchanged)
         Text('Battery Cell Temps', style: headerStyle.copyWith(fontSize: 18)),
         DataTable(
           columns: [
@@ -193,7 +154,7 @@ class StatsView extends StatelessWidget {
     );
   }
 
-  /// 4. The GPS information panel
+  /// 4. The GPS information panel - NOW CLEANED UP
   Widget _buildGpsSection() {
     return Container(
       padding: const EdgeInsets.all(16),
@@ -207,11 +168,6 @@ class StatsView extends StatelessWidget {
           _GpsInfoRow(label: 'Latitude', value: '28.4251° N'),
           _GpsInfoRow(label: 'Longitude', value: '77.0435° E'),
           _GpsInfoRow(label: 'Altitude', value: '238 m'),
-          _GpsInfoRow(
-            label: 'CAN Bus Status',
-            value: 'Connected',
-            valueColor: Colors.greenAccent,
-          ),
         ],
       ),
     );
@@ -219,7 +175,7 @@ class StatsView extends StatelessWidget {
 
   // --- HELPER WIDGETS ---
 
-  /// A helper for the 4 gauges at the top
+  /// A helper for the gauges (Syncfusion)
   Widget _MetricGauge({
     required String title,
     required double value,
@@ -321,7 +277,7 @@ class StatsView extends StatelessWidget {
     );
   }
 
-  /// A helper to build a placeholder line chart
+  /// A helper to build a placeholder line chart (fl_chart)
   Widget _buildLineChart(String title) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,7 +1,11 @@
 // lib/views/apps_view.dart
+import 'package:ev_smart_screen/views/battery_view.dart'; // <-- ADDED
 import 'package:ev_smart_screen/views/map_view.dart';
+import 'package:ev_smart_screen/views/motor_view.dart'; // <-- ADDED
 import 'package:ev_smart_screen/views/settings_view.dart';
 import 'package:ev_smart_screen/views/stats_view.dart';
+import 'package:ev_smart_screen/views/systems_view.dart'; // <-- ADDED
+import 'package:ev_smart_screen/views/tyre_pms_view.dart'; // <-- ADDED
 import 'package:flutter/material.dart';
 
 // A simple class to hold our app info
@@ -32,6 +36,28 @@ class AppsView extends StatelessWidget {
         icon: Icons.settings,
         page: const SettingsView(),
       ),
+      // --- UPDATED APPS ---
+      AppItem(
+        title: 'Battery',
+        icon: Icons.battery_full,
+        page: const BatteryView(), // <-- UPDATED
+      ),
+      AppItem(
+        title: 'Motor',
+        icon: Icons.electric_bolt, // <-- NEW
+        page: const MotorView(), // <-- NEW
+      ),
+      AppItem(
+        title: 'Vehicle Systems',
+        icon: Icons.car_crash, // <-- NEW (using brake icon)
+        page: const SystemsView(), // <-- NEW
+      ),
+      AppItem(
+        title: 'Tyre Pressure',
+        icon: Icons.tire_repair,
+        page: const TyrePmsView(), // <-- UPDATED
+      ),
+      // --- PLACEHOLDERS ---
       AppItem(
         title: 'Music',
         icon: Icons.music_note,
@@ -41,16 +67,6 @@ class AppsView extends StatelessWidget {
         title: 'Weather',
         icon: Icons.cloud,
         page: const PlaceholderPage(title: 'Weather App'), // Placeholder
-      ),
-      AppItem(
-        title: 'Tire Pressure',
-        icon: Icons.tire_repair,
-        page: const PlaceholderPage(title: 'Tire Pressure App'), // Placeholder
-      ),
-      AppItem(
-        title: 'Battery',
-        icon: Icons.battery_full,
-        page: const PlaceholderPage(title: 'Battery App'), // Placeholder
       ),
       AppItem(
         title: 'Connectivity',
